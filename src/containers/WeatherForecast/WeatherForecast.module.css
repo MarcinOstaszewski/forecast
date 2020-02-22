@@ -4,9 +4,20 @@
     justify-items: start;
 }
 
-.txt-big {
+.txtBig {
     display: block;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+.imgSml {
+    width: 50px;
+}
+
+.nineth {
+    text-align: center;
+    border-right: 1px solid #ccc;
+    width: calc(100% / 9);
+    font-size: 14px;
 }
