@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import styles from './WeatherNow.module.css'
 
 class WeatherNow extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     iconUrl = 'http://openweathermap.org/img/w/'
 
     render() { 
+        
+        let visible = (!(this.props.weatherNow) ) ? {display: 'none'} : {};
 
         let cityName = this.props.cityName;
         let coords, description, pressure, humidity, windspeed, winddeg, temp, icon;
@@ -26,22 +28,22 @@ class WeatherNow extends Component {
         }
 
         return ( 
-            <section id="weather-now">
+            <section id="weatherNow" style={visible}>
                 <div className={styles.row}>
-                    <div id="name">{cityName}</div>
-                    <div id="coords">{coords}</div>
+                    <div id={styles.name}>{cityName}</div>
+                    <div id={styles.coords}>{coords}</div>
                 </div>
                 <div className={styles.row}>
-                    <div className={styles.column} id="details">
-                        <div id="description">{description}</div>
-                        <div id="pressure">{pressure}</div>
-                        <div id="humidity">{humidity}</div>
-                        <div id="windspeed">{windspeed}</div>
-                        <div id="winddeg">{winddeg}</div>
+                    <div className={styles.column} id={styles.details}>
+                        <div id={styles.description}>{description}</div>
+                        <div id={styles.pressure}>{pressure}</div>
+                        <div id={styles.humidity}>{humidity}</div>
+                        <div id={styles.windspeed}>{windspeed}</div>
+                        <div id={styles.winddeg}>{winddeg}</div>
                     </div>
                     <div className={styles.row}>
                         <div >{icon}</div>
-                        <div id="temp">{temp}</div>
+                        <div id={styles.temp}>{temp}</div>
                     </div>
                 </div>
             </section>
