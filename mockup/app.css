@@ -43,11 +43,24 @@ section#weather-now .column {
     flex-direction: column;
 }
 
+section#weather-now #details {
+    width: 300px;
+}
+
 section#weather-now #name {
     font-size: 30px;
     font-weight: bold;
     line-height: 35px;
-    width: 250px;
+    width: 300px;
+}
+section#weather-now #country {
+    font-size: 15px;
+    line-height: 25px;
+}
+section#weather-now img#icon {
+    width: 100px;
+    /* border: 1px solid black; */
+    margin-right: 10px;
 }
 
 section#weather-now #coords {
