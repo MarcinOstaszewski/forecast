@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.log('ERROR:',error);
                 })
 
-            // displayWeatherForecast(forecastData); //   !!! mockup only
             axios.get(`${url}forecast${query}`)
                 .then(response => {
                     displayWeatherForecast(response.data.list)
@@ -37,9 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const displayWeatherForecast = (data) => {
-        console.log(data[0]);
         const forecastDisplayRow = document.querySelector('#weather-forecast').querySelector('.row');
-        console.log(forecastDisplayRow)
+        forecastDisplayRow.textContent = '';
 
         for (let i = 0; i < 9; i++) { // creates 9 columns with forecast data
             let div = document.createElement('div');
@@ -60,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
             
             time.innerText = `${data[i].dt_txt.slice(5, 10)} `;
             time.innerText += data[i].dt_txt.slice(-8, -3);
-            console.log(icon.innerHtml, time.innerText);
             
             div.appendChild(temp)
             div.appendChild(icon)
@@ -84,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         country.setAttribute("id", "country");
         disp.name.appendChild(country);
 
-        disp.coords.innerText = `Latitide: ${data.coord.lat}, Longitude: ${data.coord.lon}`;
+        disp.coords.innerText = `Latitude: ${data.coord.lat}, Longitude: ${data.coord.lon}`;
         disp.description.innerText = `Now: ${data.weather[0].description}`;
         disp.humidity.innerText = `Humidity: ${data.main.humidity} % `;
         disp.pressure.innerText = `Pressure: ${data.main.pressure} hPa`;
@@ -100,5 +97,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     checkWeatherButton.addEventListener('click', getWeatherData)
-       
+
 });
