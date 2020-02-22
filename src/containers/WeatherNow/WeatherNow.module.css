@@ -1,0 +1,24 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-items: start;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+section#weather-now {
+    display: none;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #666;
+    width: 560px;
+    background-color: #eee;
+    margin: 0 auto;
+}
+
+section#weather-now div {
+    display: inline-block;
+}
