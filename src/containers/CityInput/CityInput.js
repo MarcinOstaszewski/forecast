@@ -20,7 +20,7 @@ class CityInput extends Component {
         // console.log(this.props)
         return ( 
             <main>
-                <form id="location-form">
+                <form id={styles.locationForm}>
                     <fieldset>
                         <legend>Input city name </legend>
                         <p>
