@@ -2,11 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const url = 'http://api.openweathermap.org/data/2.5/'
     const apiID = 'fd8de74bb30e63fa5bdd052cabd79493'
-
+    const iconUrl = 'http://openweathermap.org/img/w/'
     const cityInput = document.querySelector('#city')
     const checkWeatherButton = document.querySelector('#check-weather')
     const icon = document.querySelector('#icon')
-    icon.style.display = 'none';
+
+    // icon.style.display = 'none';
 
     const getWeatherData = (e) => {
         e.preventDefault();
@@ -14,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (city != "") {
             const query = `?q=${city}&APPID=${apiID}`
-            // const address = `${url}weather`
 
             axios.get(`${url}weather${query}`)
                 .then(response => {
@@ -24,29 +24,58 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.log('ERROR:',error);
                 })
 
+            // displayWeatherForecast(forecastData); //   !!! mockup only
             axios.get(`${url}forecast${query}`)
                 .then(response => {
-                    console.log(response);
-                    // displayWeatherForecast(response.data)
+                    displayWeatherForecast(response.data.list)
                 })
                 .catch(error => {
                     console.log('ERROR:', error);
                 })
+
         } else { alert("Input city name") }
     }
 
     const displayWeatherForecast = (data) => {
-        console.log(data);
+        console.log(data[0]);
+        const forecastDisplayRow = document.querySelector('#weather-forecast').querySelector('.row');
+        console.log(forecastDisplayRow)
+
+        for (let i = 0; i < 9; i++) { // creates 9 columns with forecast data
+            let div = document.createElement('div');
+            div.classList.add('column')
+            div.classList.add('nineth');
+
+            let temp = document.createElement('div');
+            temp.classList.add('temp');
+            let icon = document.createElement('div');
+            let time = document.createElement('div');
+            
+            temp.innerText = `${(Number(data[i].main.temp) - 273.15).toFixed(1)} C`;
+            const iconImg = document.createElement('img');
+            iconImg.src = `${iconUrl}${data[i].weather[0].icon}.png`;
+            iconImg.alt = "weather icon";
+            iconImg.classList.add = 'img-small'
+            icon.appendChild(iconImg);
+            
+            time.innerText = `${data[i].dt_txt.slice(5, 10)} `;
+            time.innerText += data[i].dt_txt.slice(-8, -3);
+            console.log(icon.innerHtml, time.innerText);
+            
+            div.appendChild(temp)
+            div.appendChild(icon)
+            div.appendChild(time)
+            forecastDisplayRow.appendChild(div);
+        }
+        document.querySelector('#weather-forecast').style.display = 'block'
     }
 
     const displayWeatherNow = (data) => {
-        console.log(data);
         const ids = ['name', 'coords', 'description', 'humidity', 'pressure', 'windspeed', 'winddeg', 'temp', 'icon'];
         const disp = {};
 
         ids.forEach( id => {
             disp[id] = document.querySelector('#' + id)
-            console.log(disp[id])
         })
 
         disp.name.innerText = `${data.name} `;
@@ -63,12 +92,13 @@ document.addEventListener("DOMContentLoaded", function () {
         disp.winddeg.innerText = `Wind direction: ${data.wind.deg} deg`;
         disp.temp.innerText = `Temperature: \n${(Number(data.main.temp) - 273.15).toFixed(1)} C | ${(Number(data.main.temp)*9/5-459.67).toFixed(1)} F`;
 
-        icon.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
+        icon.src = `${iconUrl}${data.weather[0].icon}.png`
         icon.style.display = 'block';
+
+        document.querySelector('#weather-now').style.display = 'block'
+
     }
 
     checkWeatherButton.addEventListener('click', getWeatherData)
-
-    displayWeatherNow({ "coord": { "lon": 21.01, "lat": 52.23 }, "weather": [{ "id": 520, "main": "Rain", "description": "light intensity shower rain", "icon": "09d" }], "base": "stations", "main": { "temp": 278.67, "feels_like": 272.39, "temp_min": 277.59, "temp_max": 279.82, "pressure": 1017, "humidity": 81 }, "visibility": 10000, "wind": { "speed": 6.7, "deg": 300 }, "clouds": { "all": 75 }, "dt": 1582295173, "sys": { "type": 1, "id": 1713, "country": "PL", "sunrise": 1582263660, "sunset": 1582300719 }, "timezone": 3600, "id": 756135, "name": "Warsaw", "cod": 200 })
-
+       
 });
