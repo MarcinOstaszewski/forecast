@@ -1,4 +1,5 @@
 body {
+    box-sizing: border-box;
     font-family: 'Roboto', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 16px;
     width: 100%;
@@ -21,24 +22,45 @@ form#location-form>fieldset {
     padding-left: 150px;
 }
 
-section#weather-now {
+section#weather-now,
+section#weather-forecast {
+    display: none;
     padding: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #666;
     width: 560px;
     background-color: #eee;
     margin: 0 auto;
 }
 
-section#weather-now div {
+section#weather-now div,
+section#weather-forecast div {
     display: inline-block;
 }
 
-section#weather-now .row {
+section#weather-forecast>span.txt-big {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+section#weather-forecast div.nineth {
+    text-align: center;
+    border-right: 1px solid #ccc;
+    width: calc(100% / 9);
+    font-size: 14px;
+}
+
+section#weather-now .row,
+section#weather-forecast .row {
     display: flex;
     flex-direction: row;
     justify-items: start;
 }
 
-section#weather-now .column {
+section#weather-now .column,
+section#weather-forecast .column {
     display: flex;
     flex-direction: column;
 }
@@ -59,7 +81,6 @@ section#weather-now #country {
 }
 section#weather-now img#icon {
     width: 100px;
-    /* border: 1px solid black; */
     margin-right: 10px;
 }
 
@@ -72,4 +93,8 @@ section#weather-now #coords #details {
     width: 200px;
     font-size: 20px;
     line-height: 30px;
+}
+
+.img-sm {
+    width: 50px;
 }
