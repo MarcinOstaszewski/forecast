@@ -1,0 +1,12 @@
+main.main {
+    text-align: center;
+}
+
+form#location-form {
+    width: 600px;
+    margin: 0 auto;
+}
+
+form#location-form>fieldset {
+    padding-left: 150px;
+}
