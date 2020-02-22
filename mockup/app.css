@@ -20,3 +20,43 @@ form#location-form {
 form#location-form>fieldset {
     padding-left: 150px;
 }
+
+section#weather-now {
+    padding: 20px;
+    width: 560px;
+    background-color: #eee;
+    margin: 0 auto;
+}
+
+section#weather-now div {
+    display: inline-block;
+}
+
+section#weather-now .row {
+    display: flex;
+    flex-direction: row;
+    justify-items: start;
+}
+
+section#weather-now .column {
+    display: flex;
+    flex-direction: column;
+}
+
+section#weather-now #name {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 35px;
+    width: 250px;
+}
+
+section#weather-now #coords {
+    line-height: 35px;
+    font-style: italic;
+}
+
+section#weather-now #coords #details {
+    width: 200px;
+    font-size: 20px;
+    line-height: 30px;
+}
