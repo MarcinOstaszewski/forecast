@@ -8,7 +8,6 @@ class CityInput extends Component {
 
     sendCityName = (e, city) => {
         if (e) {e.preventDefault()}
-        console.log(city);
         if (city) {
             this.props.getWeatherData(city)
         } else {
@@ -19,7 +18,6 @@ class CityInput extends Component {
     randomCityName = e => {
         e.preventDefault();
         let randNum = Math.floor(Math.random() * bigCities.length)
-        console.log(bigCities[randNum][0], bigCities[randNum][1]);
         this.setState({
             city: bigCities[randNum][0]
         })

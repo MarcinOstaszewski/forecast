@@ -62,7 +62,6 @@ class Forecast extends Component {
         let forecast = this.state.weatherForecast;
         let cityName = this.state.city;
         let visible = (!(this.state.errorMessage) ) ? {display: 'none'} : {};
-        console.log(visible, this.state.errorMessage);
 
         return (
             <div className={styles.forecast}>

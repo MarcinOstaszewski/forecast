@@ -10,7 +10,6 @@ class WeatherNow extends Component {
         
         let visible = (!(this.props.weatherNow) ) ? {display: 'none'} : {};
         let now = this.props.weatherNow
-        console.log(now)
         let cityName = this.props.cityName;
         let country, coords, description, pressure, humidity, windspeed, winddeg, temp1, temp2, icon;
         if (now) {
