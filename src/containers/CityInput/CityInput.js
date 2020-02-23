@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from "./CityInput.module.css"
 
 class CityInput extends Component {
-    state = { city: 'Krakow' }
+    state = { city: '' }
 
     sendCityName = e => {
         e.preventDefault()
@@ -17,7 +17,6 @@ class CityInput extends Component {
     }
 
     render() { 
-        // console.log(this.props)
         return ( 
             <main>
                 <form id={styles.locationForm}>
