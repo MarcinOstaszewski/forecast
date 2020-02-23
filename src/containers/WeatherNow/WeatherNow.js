@@ -9,26 +9,27 @@ class WeatherNow extends Component {
     render() { 
         
         let visible = (!(this.props.weatherNow) ) ? {display: 'none'} : {};
-
+        let now = this.props.weatherNow
+        console.log(now)
         let cityName = this.props.cityName;
-        let coords, description, pressure, humidity, windspeed, winddeg, temp1, temp2, icon;
-        if (this.props.weatherNow) {
-            coords = `Latitude: ${this.props.weatherNow.coord.lat}, Longitude: ${this.props.weatherNow.coord.lon}`;
-            description = `Now: ${this.props.weatherNow.weather[0].description}`;
-            humidity = `Humidity: ${this.props.weatherNow.main.humidity} % `;
-            pressure = `Pressure: ${this.props.weatherNow.main.pressure} hPa`;
-            windspeed = `Wind speed: ${this.props.weatherNow.wind.speed} km/h`;
-            winddeg = `Wind direction: ${this.props.weatherNow.wind.deg} deg`;
+        let country, coords, description, pressure, humidity, windspeed, winddeg, temp1, temp2, icon;
+        if (now) {
+            coords = `Latitude: ${now.coord.lat}, Longitude: ${now.coord.lon}`;
+            country = `(${now.sys.country})`
+            description = `Weather: ${now.weather[0].description}`;
+            humidity = `Humidity: ${now.main.humidity} % `;
+            pressure = `Pressure: ${now.main.pressure} hPa`;
+            windspeed = `Wind speed: ${now.wind.speed} km/h`;
+            winddeg = now.wind.deg ? `Wind direction: ${now.wind.deg} deg` : null // direction is given only when wind is strong enough
             temp1 = `Temperature:`;
-            temp2 = `${(Number(this.props.weatherNow.main.temp) - 273.15).toFixed(1)} C | ${(Number(this.props.weatherNow.main.temp)*9/5-459.67).toFixed(1)} F`;
-            
-            icon = <img className={styles.imgBig} src={this.iconUrl + this.props.weatherNow.weather[0].icon + '.png'}  alt="weather icon"  />
+            temp2 = `${(Number(now.main.temp) - 273.15).toFixed(1)} C | ${(Number(now.main.temp)*9/5-459.67).toFixed(1)} F`;
+            icon = <img className={styles.imgBig} src={this.iconUrl + now.weather[0].icon + '.png'}  alt="weather icon"  />
         }
 
         return ( 
             <section id="weatherNow" style={visible}>
                 <div className={styles.row}>
-                    <div id={styles.name}>{cityName}</div>
+                    <div id={styles.name}>{cityName}<span>{country}</span></div>
                     <div id={styles.coords}>{coords}</div>
                 </div>
                 <div className={styles.row}>

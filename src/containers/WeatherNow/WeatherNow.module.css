@@ -38,9 +38,10 @@ section div {
     width: 275px;
 }
 
-#country {
+#name>span {
     font-size: 15px;
     line-height: 25px;
+    margin-left: 10px;
 }
 
 #coords {
