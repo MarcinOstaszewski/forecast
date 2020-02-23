@@ -9,6 +9,11 @@
     flex-direction: column;
 }
 
+.imgBig {
+    width: 75px;
+    margin-right: 10px;
+}
+
 section {
     padding: 20px;
     margin-bottom: 10px;
@@ -22,34 +27,35 @@ section div {
     display: inline-block;
 }
 
-section #details {
-    width: 300px;
+#details {
+    width: 275px;
 }
 
-section #name {
+#name {
     font-size: 30px;
     font-weight: bold;
     line-height: 35px;
-    width: 300px;
+    width: 275px;
 }
 
-section #country {
+#country {
     font-size: 15px;
     line-height: 25px;
 }
 
-section img#icon {
-    width: 100px;
-    margin-right: 10px;
-}
-
-section #coords {
+#coords {
     line-height: 35px;
     font-style: italic;
 }
 
-section #coords #details {
+#coords #details {
     width: 200px;
     font-size: 20px;
     line-height: 30px;
+}
+#temp span, #temp b {
+    display: block;
+}
+#temp b {
+    font-size: 24px;
 }
