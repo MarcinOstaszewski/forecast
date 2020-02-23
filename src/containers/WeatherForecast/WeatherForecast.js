@@ -4,7 +4,7 @@ import styles from './WeatherForecast.module.css'
 
 class WeatherForecast extends Component {
 
-    iconUrl = 'http://openweathermap.org/img/w/'
+    iconUrl = 'https://openweathermap.org/img/w/'
 
     render() { 
         let visible = (!(this.props.weatherForecast) ) ? {display: 'none'} : {};
@@ -12,7 +12,7 @@ class WeatherForecast extends Component {
 
         if (this.props.weatherForecast !== false) {
             let data = this.props.weatherForecast;
-            for (let i = 0; i < 9; i++) { // creates 9 columns with forecast data
+            for (let i = 1; i < 10; i++) { // creates 9 columns with forecast data
                 let column = <div className={styles.nineth} key={i}>
                         <div className={styles.temp}>{(Number(data[i].main.temp) - 273.15).toFixed(1)} C</div>
                         <div className={styles.icon}>
