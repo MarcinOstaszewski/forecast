@@ -4,8 +4,8 @@ import CityInput from '../CityInput/CityInput';
 import WeatherNow from '../WeatherNow/WeatherNow';
 import WeatherForecast from '../WeatherForecast/WeatherForecast';
 
-// import axios from 'axios';
-            import { forecastData, weatherData } from '../../weatherData';
+            import axios from 'axios';
+            // import { forecastData, weatherData } from '../../weatherData';
 
 import styles from './Forecast.module.css'
 
@@ -22,35 +22,35 @@ class Forecast extends Component {
 
     getWeatherData = (city) => {
         
-        // const query = `?q=${city}&APPID=${this.apiID}`
-        // axios.all([
-        //     axios.get(`${this.url}weather${query}`),
-        //     axios.get(`${this.url}forecast${query}`)
-        //     ])
-        //     .then(([weather, forecast]) => {
-        //         console.log(weather.data)
-        //         console.log(forecast.data.list)
-        //         this.setState({
-        //             weatherNow: weather.data,
-        //             weatherForecast: forecast.data.list,
-        //             city: city
-        //         })
-        //     })
-        //     .catch(error => {
-        //         this.setState({errorMessage: error.response.data.message})
-        //     })
+        const query = `?q=${city}&APPID=${this.apiID}`
+        axios.all([
+            axios.get(`${this.url}weather${query}`),
+            axios.get(`${this.url}forecast${query}`)
+            ])
+            .then(([weather, forecast]) => {
+                console.log(weather.data)
+                console.log(forecast.data.list)
+                this.setState({
+                    weatherNow: weather.data,
+                    weatherForecast: forecast.data.list,
+                    city: city
+                })
+            })
+            .catch(error => {
+                this.setState({errorMessage: error.response.data.message})
+            })
 
-                        this.setState({
-                            weatherNow: weatherData,
-                            weatherForecast: forecastData.list,
-                            city: city
-                        })
+                        // this.setState({
+                        //     weatherNow: weatherData,
+                        //     weatherForecast: forecastData.list,
+                        //     city: city
+                        // })
     }
 
 
-    componentDidMount = () => {
-        this.getWeatherData('Krakow')
-    }
+    // componentDidMount = () => {
+    //     this.getWeatherData('Krakow')
+    // }
 
     render () {
 
