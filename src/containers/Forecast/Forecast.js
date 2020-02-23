@@ -13,11 +13,11 @@ class Forecast extends Component {
     state = {
         weatherNow: false,
         weatherForecast: false,
-        errorMessage: '',
+        errorMessage: false,
         city: ''
     }
 
-    url = 'http://api.openweathermap.org/data/2.5/'
+    url = 'https://api.openweathermap.org/data/2.5/'
     apiID = 'fd8de74bb30e63fa5bdd052cabd79493'
 
     getWeatherData = (city) => {
@@ -28,16 +28,20 @@ class Forecast extends Component {
             axios.get(`${this.url}forecast${query}`)
             ])
             .then(([weather, forecast]) => {
-                console.log(weather.data)
-                console.log(forecast.data.list)
                 this.setState({
                     weatherNow: weather.data,
                     weatherForecast: forecast.data.list,
-                    city: city
+                    city: city,
+                    errorMessage: false
                 })
             })
             .catch(error => {
-                this.setState({errorMessage: error.response.data.message})
+                // displays error message and hides both weather displays
+                this.setState({
+                    errorMessage: error.response.data.message,
+                    weatherNow: false,
+                    weatherForecast: false,
+                })
             })
 
                         // this.setState({
@@ -57,12 +61,15 @@ class Forecast extends Component {
         let now = this.state.weatherNow;
         let forecast = this.state.weatherForecast;
         let cityName = this.state.city;
+        let visible = (!(this.state.errorMessage) ) ? {display: 'none'} : {};
+        console.log(visible, this.state.errorMessage);
 
         return (
             <div className={styles.forecast}>
                 <CityInput getWeatherData={this.getWeatherData} />
                 <WeatherNow weatherNow={now} cityName={cityName} />
                 <WeatherForecast weatherForecast={forecast}/>
+                <div style={visible} className={styles.errorMessage}>Error message: "{this.state.errorMessage}"</div>
             </div>
         )
     }

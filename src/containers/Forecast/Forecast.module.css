@@ -6,3 +6,10 @@
     background-color: #eee;
     margin: 0 auto;
 } */
+
+.errorMessage {
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    color: darkred;
+}
