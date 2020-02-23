@@ -14,14 +14,25 @@ form#locationForm>fieldset {
 form#locationForm>fieldset input {
     padding: 10px 10px 2px 10px;
     font-size: 24px;
-    width: 300px;
+    width: 280px;
     background-color: #f0f0f0;
     border: none;
     border-bottom: 1px solid #bbb;
 }
-form#locationForm>fieldset #checkWeather {
-    padding: 10px;
+.flexRow {
+    display: flex;
     width: 300px;
-    background-color: #f0f0f0;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#checkWeather, #random {
+    padding: 10px;
+    width: 140px;
+    background-color: #d5ee9b;
     font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+#random {
+    background-color: #eed59b;
 }

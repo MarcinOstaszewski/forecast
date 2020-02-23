@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
+import { bigCities } from '../../assets/bigCities'
 
 import styles from "./CityInput.module.css"
 
 class CityInput extends Component {
     state = { city: '' }
 
-    sendCityName = e => {
-        e.preventDefault()
-        this.props.getWeatherData(this.state.city)
+    sendCityName = (e, city) => {
+        if (e) {e.preventDefault()}
+        console.log(city);
+        if (city) {
+            this.props.getWeatherData(city)
+        } else {
+            this.props.getWeatherData(this.state.city)
+        }
+    }
+
+    randomCityName = e => {
+        e.preventDefault();
+        let randNum = Math.floor(Math.random() * bigCities.length)
+        console.log(bigCities[randNum][0], bigCities[randNum][1]);
+        this.setState({
+            city: bigCities[randNum][0]
+        })
+        this.sendCityName(null, bigCities[randNum][0]);
     }
 
     changeInputTextHandler = e => {
@@ -29,7 +45,10 @@ class CityInput extends Component {
                                 onChange={this.changeInputTextHandler} 
                                 value={this.state.city}/>
                         </p>
-                        <button id={styles.checkWeather} onClick={this.sendCityName}>Check weather</button>
+                        <div className={styles.flexRow}>
+                            <button id={styles.checkWeather} onClick={this.sendCityName}>Check weather</button>
+                            <button id={styles.random} onClick={this.randomCityName}>Random city</button>
+                        </div>
                     </fieldset>
                 </form>
             </main>
